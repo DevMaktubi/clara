@@ -8,6 +8,7 @@
     "name": "Breno Luiz",
     "email": "brenoluiz1@gmail.com"
   },
+  "artifactName": "CLARA-${version}-${os}.${ext}",
   "license": "MIT",
   "repository": {
     "type": "git",
