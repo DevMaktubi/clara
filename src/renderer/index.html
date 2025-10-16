@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CLARA</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; script-src 'self';">
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../assets/fa/css/all.min.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-row">
+        <h1>CLARA</h1>
+        <button id="infoBtn" class="btn info" aria-haspopup="dialog" aria-controls="infoModal"> <i class="fa-solid fa-circle-info" style="font-size: large;" aria-hidden="true"></i> </button>
+      </div>
+      <p>Classificador Leve e Automático de Recursos Arquivísticos</p>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <div class="row">
+          <label for="dir">Pasta</label>
+          <input id="dir" type="text" placeholder="Selecione a pasta..." readonly />
+          <button id="chooseDir" class="btn">Selecionar</button>
+        </div>
+        <div class="row">
+          <label for="ext">Extensão</label>
+          <select id="ext" tabindex="0">
+            <option value=".jpeg">.jpeg</option>
+            <option value=".jpg">.jpg</option>
+            <option value=".png">.png</option>
+            <option value=".tif">.tif</option>
+            <option value=".tiff">.tiff</option>
+            <option value=".pdf">.pdf</option>
+            <option value=".docx">.docx</option>
+            <option value=".pptx">.pptx</option>
+            <option value=".xlsx">.xlsx</option>
+            <option value=".txt">.txt</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="start">Número inicial</label>
+          <input id="start" type="number" min="0" value="1" />
+        </div>
+        <div class="row actions">
+          <button id="scan" class="btn">Analisar</button>
+          <button id="run" class="btn primary" disabled>Renomear</button>
+          <button id="undo" class="btn warn" disabled>Desfazer</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div id="summary">
+          <div class="d-flex">
+            <p>Aguardando...</p>
+            <p>Estrutura padrão de nomeação de arquivos: </p>
+            <p><b>{Título} {Data(ex 09-10-1941)}.p.{número-da-página}.ext(extensão)</b></p>
+            <p><b>Exemplo:</b> "AT 09-10-1941.p.1.jpeg"</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Arquivos analisados</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Data</th>
+              <th>Página</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Logs</h2>
+        <pre id="logs"></pre>
+      </section>
+    </main>
+
+    <!-- Toast notification -->
+    <div id="toast" aria-live="polite" aria-atomic="true" class="toast" hidden></div>
+
+    <!-- Info Modal -->
+    <div id="infoOverlay" class="modal-overlay" hidden></div>
+    <div id="infoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="infoTitle" hidden>
+      <div class="modal-header">
+        <h2 id="infoTitle">Sobre o projeto</h2>
+        <button id="infoClose" class="btn" aria-label="Fechar">Fechar</button>
+      </div>
+      <div class="modal-content">
+        <p><strong>Motivação:</strong> Facilitar a organização cronológica de arquivos digitalizados para pesquisa acadêmica, nascida da necessidade real da Ana Clara ao usar a Hemeroteca Digital da Biblioteca Nacional.</p>
+        <p><strong>Fluxo:</strong> escolher pasta → definir extensão → número inicial → extrair data/página → ordenar → renomear com numeração → logs e desfazer.</p>
+        <p><strong>Tecnologias:</strong> Electron 33+, Node.js 20+, HTML/CSS/JS (ESM).</p>
+        <p><strong>Padrão de nome:</strong> <code>{Título} DD-MM-YYYY.p.NUMERO.ext</code> (ex.: <code>AT 09-10-1941.p.1.jpeg</code>).</p>
+        <p><strong>Repositório:</strong> <a id="repoLink" href="#" target="_blank" rel="noopener">defina o link do repositório</a></p>
+        <p><strong>Contato do desenvolvedor:</strong> <a href="https://github.com/brenoluiz" target="_blank" rel="noopener">@brenoluiz</a></p>
+      </div>
+    </div>
+
+    <script src="./renderer.js" type="module"></script>
+  </body>
+</html>
