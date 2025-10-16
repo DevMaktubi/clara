@@ -25,11 +25,13 @@ Ela permite selecionar uma pasta, escolher parâmetros (extensão, número inici
 
 ## 🛠 Estrutura
 
+```
 src/
 ├─ main/ → processo principal e lógica de renomeação
 ├─ renderer/ → interface do usuário
 ├─ preload/ → comunicação segura
 └─ assets/ → ícones e temas
+```
 
 ---
 
