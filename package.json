@@ -1,9 +1,19 @@
 {
   "name": "clara",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "CLARA — Classificador Leve e Automático de Recursos Arquivísticos",
   "type": "module",
   "main": "src/main/index.js",
+  "author": {
+    "name": "Breno Luiz",
+    "email": "brenoluiz1@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brenoluiz/clara.git"
+  },
+  "homepage": "https://github.com/brenoluiz/clara",
   "scripts": {
     "dev": "electron .",
     "start": "electron .",
@@ -14,7 +24,7 @@
   },
   "devDependencies": {
     "electron": "^33.0.0",
-    "electron-builder": "^25.0.0"
+    "electron-builder": "^25.1.8"
   },
   "build": {
     "appId": "com.clara.app",
@@ -23,25 +33,27 @@
       "src/**/*",
       "package.json"
     ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist"
+    },
     "mac": {
       "category": "public.app-category.productivity",
-      "target": [
-        "dmg",
-        "zip"
-      ]
+      "icon": "assets/icon.icns",
+      "target": ["dmg", "zip"]
     },
     "win": {
-      "target": [
-        "nsis",
-        "zip"
-      ]
+      "icon": "assets/icon.ico",
+      "target": ["nsis", "zip"]
     },
     "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ],
+      "icon": "assets/icon.png",
+      "target": ["AppImage", "deb"],
       "category": "Utility"
     }
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
   }
 }
