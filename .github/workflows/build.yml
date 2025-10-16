@@ -3,7 +3,7 @@ name: Build and Release CLARA
 on:
   push:
     tags:
-      - 'v*' # Exemplo: v1.0.0, v1.1.0, etc.
+      - 'v*' # dispara o build quando você faz push de uma tag, ex: v1.0.0
 
 jobs:
   build:
@@ -25,11 +25,17 @@ jobs:
         run: npm ci
 
       - name: Build app with electron-builder
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npx electron-builder --${{ matrix.os == 'windows-latest' && 'win' || matrix.os == 'macos-latest' && 'mac' || 'linux' }} \
-            --publish always
+          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+            npx electron-builder --win --publish always
+          elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+            npx electron-builder --mac --publish always
+          else
+            npx electron-builder --linux --publish always
+          fi
 
       - name: Upload build artifacts
         if: always()
