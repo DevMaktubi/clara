@@ -12,9 +12,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brenoluiz/clara.git"
+    "url": "https://github.com/devmaktubi/clara.git"
   },
-  "homepage": "https://github.com/brenoluiz/clara",
+  "homepage": "https://github.com/devmaktubi/clara",
   "scripts": {
     "dev": "electron .",
     "start": "electron .",
